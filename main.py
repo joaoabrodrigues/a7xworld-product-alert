@@ -88,8 +88,21 @@ def monitor():
                 # Extrair nome da coleção do link
                 colecao = url.split("/collections/")[-1].split("/")[0] if "/collections/" in url else "geral"
                 
+                headers = {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                    "Accept": "application/json, text/plain, */*",
+                    "Accept-Language": "en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7",
+                    "Referer": "https://a7xworld.com/",
+                    "Sec-Ch-Ua": '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+                    "Sec-Ch-Ua-Mobile": "?0",
+                    "Sec-Ch-Ua-Platform": '"Windows"',
+                    "Sec-Fetch-Dest": "empty",
+                    "Sec-Fetch-Mode": "cors",
+                    "Sec-Fetch-Site": "same-origin"
+                }
+                
                 try:
-                    res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+                    res = requests.get(url, headers=headers, timeout=15)
                     res.raise_for_status()
                     data = res.json()
                 except Exception as req_err:
